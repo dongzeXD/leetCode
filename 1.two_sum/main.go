@@ -17,8 +17,21 @@ func twoSum(nums []int, target int) []int {
 	return nil
 }
 
+func twoSum2(nums []int, target int) []int {
+	toTargetMap := make(map[int]int)
+
+	for idx, num := range nums {
+		if firstIdx, ok := toTargetMap[num]; ok {
+			return []int{firstIdx, idx}
+		}
+		want := target - num
+		toTargetMap[want] = idx
+	}
+	return nil
+}
+
 func main() {
-	result := twoSum([]int{3, 2, 4}, 6)
+	result := twoSum2([]int{3, 2, 4}, 6)
 	if !reflect.DeepEqual([]int{1, 2}, result) {
 		panic(fmt.Errorf("want %v but got %v", []int{1, 2}, result))
 	}
