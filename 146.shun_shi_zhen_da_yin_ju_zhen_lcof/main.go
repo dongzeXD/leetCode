@@ -48,7 +48,7 @@ func main() {
 	//	{8, 9, 4},
 	//	{7, 6, 5},
 	//})
-
+	//fmt.Println(result)
 	//result := spiralArray([][]int{})
 
 	result := spiralArray([][]int{
@@ -57,5 +57,10 @@ func main() {
 		{6},
 	})
 	fmt.Println(result)
+
+	//result := spiralArray([][]int{
+	//	{7, 8, 9},
+	//})
+	//fmt.Println(result)
 
 }
