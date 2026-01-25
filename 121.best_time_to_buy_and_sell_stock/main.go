@@ -15,3 +15,15 @@ func maxProfit_(prices []int) int {
 	}
 	return money
 }
+
+// 前缀和
+func maxProfit(prices []int) int {
+	minPrice := prices[0]
+	result := 0
+
+	for _, p := range prices {
+		result = max(result, p-minPrice)
+		minPrice = min(minPrice, p)
+	}
+	return result
+}
