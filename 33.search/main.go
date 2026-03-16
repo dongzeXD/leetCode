@@ -9,7 +9,9 @@ func findMin(nums []int) int {
 		mid := left + (right-left)/2
 		if nums[mid] < nums[len(nums)-1] {
 			right = mid
-		} else {
+		} else if nums[mid] == nums[len(nums)-1] {
+			right = mid
+		} else if nums[mid] > nums[len(nums)-1] { // 说明左区间是升序，右区间是升序
 			left = mid + 1
 		}
 	}
