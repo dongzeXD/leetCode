@@ -2,27 +2,31 @@ package main
 
 import "fmt"
 
+// 1 3 3 5 0 0 0   2 4 6
+// 1 2 3 3 5 0 0   4 6
 func merge(nums1 []int, m int, nums2 []int, n int) {
-	var i, j int
+	var i, j, c int
+	sorted := make([]int, 0, m+n)
 
-	for i < m+n {
-		// nums1 为空
-		if i == m+j {
-			for ; j < n; j++ {
-				nums1[i] = nums2[j]
-				i++
-			}
-		} else if j == n { // nums2 为空
-			return
-		} else {
-			if nums2[j] < nums1[i] {
-				rightDrift(nums1, i, m+j)
-				nums1[i] = nums2[j]
-				j++
-			}
+	for ; c < m+n; c++ {
+		if i == m {
+			sorted = append(sorted, nums2[j:]...)
+			break
+		}
+		if j == n {
+			sorted = append(sorted, nums1[i:]...)
+			break
+		}
+		if nums1[i] <= nums2[j] {
+			sorted = append(sorted, nums1[i])
 			i++
+		} else {
+			sorted = append(sorted, nums2[j])
+			j++
 		}
 	}
+
+	copy(nums1, sorted)
 }
 
 func rightDrift(src []int, left, right int) {
